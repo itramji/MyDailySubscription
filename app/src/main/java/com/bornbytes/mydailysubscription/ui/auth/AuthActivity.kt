@@ -1,8 +1,8 @@
-package com.bornbytes.mydailysubscription
+package com.bornbytes.mydailysubscription.ui.auth
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.bornbytes.mydailysubscription.ui.auth.LoginFragment
+import androidx.appcompat.app.AppCompatActivity
+import com.bornbytes.mydailysubscription.R
 import com.bornbytes.mydailysubscription.util.replaceFragment
 
 class AuthActivity : AppCompatActivity() {

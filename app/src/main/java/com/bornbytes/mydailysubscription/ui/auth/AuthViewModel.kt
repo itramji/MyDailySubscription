@@ -12,6 +12,6 @@ class AuthViewModel(val authRepository: AuthRepository) : ViewModel() {
     val loginResponse = MutableLiveData<RemoteResult<Any>>()
 
     fun loginUser() = viewModelScope.launch {
-        loginResponse.value =  authRepository.loginUser()
+        loginResponse.value = authRepository.loginUser()
     }
 }

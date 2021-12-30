@@ -30,8 +30,7 @@ fun Context?.isOnline(): Boolean {
 
 fun View.hideKeyboard(): Boolean {
     try {
-        val inputMethodManager =
-            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     } catch (ignored: RuntimeException) {
     }
@@ -46,11 +45,9 @@ fun View.showKeyboard() {
 
 fun View.getString(@StringRes resId: Int): String = resources.getString(resId)
 
-fun View.getString(@StringRes resId: Int, vararg formatArgs: Any): String =
-    resources.getString(resId, *formatArgs)
+fun View.getString(@StringRes resId: Int, vararg formatArgs: Any): String = resources.getString(resId, *formatArgs)
 
-fun View.getDimenSize(@DimenRes resId: Int): Int =
-    resources.getDimensionPixelSize(resId)
+fun View.getDimenSize(@DimenRes resId: Int): Int = resources.getDimensionPixelSize(resId)
 
 fun View.isVisible() = visibility == View.VISIBLE
 
@@ -105,8 +102,7 @@ fun Activity.startActivity(cls: Class<*>, finishCallingActivity: Boolean = false
 fun FragmentManager.replaceFragment(resId: Int, fragment: Fragment) = this.beginTransaction().replace(resId, fragment).commitNow()
 
 //Email Validation
-fun String.isValidEmail(): Boolean =
-    this.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+fun String.isValidEmail(): Boolean = this.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
 //Phone number format
 /*fun String.formatPhoneNumber(context: Context, region: String): String? {

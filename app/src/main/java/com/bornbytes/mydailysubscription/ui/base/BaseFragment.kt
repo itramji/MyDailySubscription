@@ -13,24 +13,17 @@ import com.bornbytes.mydailysubscription.repository.BaseRepository
 
 abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, R : BaseRepository> : Fragment() {
 
-    abstract fun getViewModelClass() : Class<VM>
+    abstract fun getViewModelClass(): Class<VM>
 
-    abstract fun getFragmentBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ): VB
+    abstract fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?): VB
 
-    abstract fun getFragmentRepository() : R
+    abstract fun getFragmentRepository(): R
 
     lateinit var binding: VB
     lateinit var viewModel: VM
     val remoteDataSource = RemoteDataSource()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = getFragmentBinding(inflater, container)
         val factory = ViewModelFactory(getFragmentRepository())
         viewModel = ViewModelProvider(this, factory).get(getViewModelClass())

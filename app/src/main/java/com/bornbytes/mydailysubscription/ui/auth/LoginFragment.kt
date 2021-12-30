@@ -18,28 +18,22 @@ class LoginFragment : BaseFragment<AuthViewModel, LoginFragmentBinding, AuthRepo
         fun newInstance() = LoginFragment()
     }
 
-    override fun getFragmentBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ) = LoginFragmentBinding.inflate(inflater, container, false)
+    override fun getFragmentBinding(inflater: LayoutInflater, container: ViewGroup?) =
+        LoginFragmentBinding.inflate(inflater, container, false)
 
     override fun getViewModelClass() = AuthViewModel::class.java
 
-    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(
-        BaseApi::class.java))
+    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(BaseApi::class.java))
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            when(it){
-                is RemoteResult.Success -> {
-                    //Show api success state ui
+            when (it) {
+                is RemoteResult.Success -> { //Show api success state ui
                 }
-                is RemoteResult.Failure -> {
-                    //Handle error
+                is RemoteResult.Failure -> { //Handle error
                 }
-                is RemoteResult.Loading -> {
-                    //Show loading indicator
+                is RemoteResult.Loading -> { //Show loading indicator
                 }
             }
         })
@@ -47,6 +41,5 @@ class LoginFragment : BaseFragment<AuthViewModel, LoginFragmentBinding, AuthRepo
         btnGetOtp.setOnClickListener { viewModel.loginUser() }
 
     }
-
 
 }

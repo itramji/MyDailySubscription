@@ -8,8 +8,7 @@ import com.bornbytes.mydailysubscription.ui.auth.AuthViewModel
 import java.lang.IllegalArgumentException
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory(private val baseRepository: BaseRepository) :
-    ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory(private val baseRepository: BaseRepository) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {

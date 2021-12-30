@@ -13,11 +13,7 @@ abstract class BaseRepository {
                 RemoteResult.Success(apiCall.invoke())
             } catch (throwable: Throwable) {
                 when (throwable) {
-                    is HttpException -> RemoteResult.Failure(
-                        false,
-                        throwable.code(),
-                        throwable.response()?.errorBody()
-                    )
+                    is HttpException -> RemoteResult.Failure(false, throwable.code(), throwable.response()?.errorBody())
                     else -> RemoteResult.Failure(true, null, null)
                 }
             }
