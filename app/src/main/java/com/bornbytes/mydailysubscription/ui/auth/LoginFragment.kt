@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.bornbytes.mydailysubscription.api.BaseApi
 import com.bornbytes.mydailysubscription.api.RemoteResult
-import com.bornbytes.mydailysubscription.ui.base.BaseFragment
 import com.bornbytes.mydailysubscription.databinding.LoginFragmentBinding
 import com.bornbytes.mydailysubscription.repository.AuthRepository
+import com.bornbytes.mydailysubscription.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.login_fragment.*
 
 class LoginFragment : BaseFragment<AuthViewModel, LoginFragmentBinding, AuthRepository>() {
@@ -23,7 +22,7 @@ class LoginFragment : BaseFragment<AuthViewModel, LoginFragmentBinding, AuthRepo
 
     override fun getViewModelClass() = AuthViewModel::class.java
 
-    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi(BaseApi::class.java))
+    override fun getFragmentRepository() = AuthRepository(remoteDataSource.buildApi())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

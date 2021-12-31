@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.net.ConnectivityManager
-import android.util.Patterns
 import android.view.View
 import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
@@ -64,6 +63,11 @@ fun View.toggleVisibility(): View {
     return this
 }
 
+fun View.toggleEnable(): View {
+    this.isEnabled = !isEnabled
+    return this
+}
+
 /**
  * Extension method to get a view as bitmap.
  */
@@ -91,6 +95,10 @@ val EditText.value
 
 fun EditText.isEmpty() = value.isEmpty()
 
+//Extensions
+fun Context.getColorRes(@ColorRes resId: Int) = ContextCompat.getColor(this, resId)
+fun Context.getDrawableRes(@DrawableRes resId: Int) = ContextCompat.getDrawable(this, resId)
+
 fun Activity.startActivity(cls: Class<*>, finishCallingActivity: Boolean = false) {
     val intent = Intent(this, cls)
     startActivity(intent)
@@ -99,21 +107,5 @@ fun Activity.startActivity(cls: Class<*>, finishCallingActivity: Boolean = false
     }
 }
 
-fun FragmentManager.replaceFragment(resId: Int, fragment: Fragment) = this.beginTransaction().replace(resId, fragment).commitNow()
-
-//Email Validation
-fun String.isValidEmail(): Boolean = this.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
-
-//Phone number format
-/*fun String.formatPhoneNumber(context: Context, region: String): String? {
-    val phoneNumberKit = PhoneNumberUtil.createInstance(context)
-    val number = phoneNumberKit.parse(this, region)
-    if (!phoneNumberKit.isValidNumber(number))
-        return null
-
-    return phoneNumberKit.format(number, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
-}*/
-
-//Extensions
-fun Context.getColor(@ColorRes resId: Int) = ContextCompat.getColor(this, resId)
-fun Context.getDrawable(@DrawableRes resId: Int) = ContextCompat.getDrawable(this, resId)
+fun FragmentManager.replaceFragment(resId: Int, fragment: Fragment) =
+    this.beginTransaction().replace(resId, fragment).commitNow()

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.bornbytes.dailysubscription.ui.order.OrderViewModel
 import com.bornbytes.mydailysubscription.R
 import com.bornbytes.mydailysubscription.api.BaseApi
 import com.bornbytes.mydailysubscription.databinding.OrderFragmentBinding

@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.bornbytes.mydailysubscription.api.RemoteDataSource
+import com.bornbytes.mydailysubscription.api.RemoteResult
 import com.bornbytes.mydailysubscription.repository.BaseRepository
+import com.bornbytes.mydailysubscription.util.showSnackBar
 
-abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, R : BaseRepository> : Fragment() {
+abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding, R : BaseRepository> : Fragment() {
 
     abstract fun getViewModelClass(): Class<VM>
 
@@ -28,5 +29,13 @@ abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, R : BaseRepository
         val factory = ViewModelFactory(getFragmentRepository())
         viewModel = ViewModelProvider(this, factory).get(getViewModelClass())
         return binding.root
+    }
+
+    fun handleApiError(failure: RemoteResult.Failure){
+        when {
+            failure.isNetworkError -> requireView().showSnackBar("Please check your network connection...")
+            failure.errorCode == 401 -> { viewModel.logoutUser(remoteDataSource.buildApi()) }
+            else -> requireView().showSnackBar(failure.errorMessage?.string() ?: "Network issue")
+        }
     }
 }

@@ -1,11 +1,14 @@
 package com.bornbytes.mydailysubscription.repository
 
+import com.bornbytes.mydailysubscription.api.BaseApi
 import com.bornbytes.mydailysubscription.api.RemoteResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 abstract class BaseRepository {
+
+    suspend fun logoutUser(api: BaseApi) = api.logoutUser()
 
     suspend fun <T> safeRemoteCall(apiCall: suspend () -> T): RemoteResult<T> {
         return withContext(Dispatchers.IO) {

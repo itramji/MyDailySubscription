@@ -6,8 +6,11 @@ import retrofit2.http.POST
 interface BaseApi {
 
     @POST("/auth")
-    suspend fun loginUser(): RemoteResult<Any>
+    suspend fun loginUser(): Any
+
+    @POST("/logout")
+    suspend fun logoutUser(): Any
 
     @GET("/orders")
-    suspend fun getOrders(): RemoteResult<Any>
+    suspend fun getOrders(): Any
 }

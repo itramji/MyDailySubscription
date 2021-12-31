@@ -1,7 +1,8 @@
-package com.bornbytes.dailysubscription.ui.order
+package com.bornbytes.mydailysubscription.ui.order
 
-import androidx.lifecycle.ViewModel
+import com.bornbytes.mydailysubscription.repository.OrderRepository
+import com.bornbytes.mydailysubscription.ui.base.BaseViewModel
 
-class OrderViewModel : ViewModel() {
+class OrderViewModel(orderRepository: OrderRepository) : BaseViewModel(orderRepository) {
   // TODO: Implement the ViewModel
 }
